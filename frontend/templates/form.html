@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block content %} {% load static %} 
+{% load form_filters %}
+{% load form_extras %}
+<div class="container mt-1 form-page">
+  <div class="text-center mb-4">
+    <h2>Formularz zgłoszeniowy</h2>
+    <p>
+      Możesz wypełnić formularz na stronie i wysłać go bezpośrednio przez nią,
+      lub pobrać formularz w wersji DOCX do wypełnienia na komputerze lub PDF do
+      druku i skanu, a następnie wysłać go na nasz adres mailowy: ozdobionedlaciebie@gmail.com.
+    </p>
+    <a href="{% static 'files/formularz.docx' %}" class="btn btn-primary me-2">
+      Pobierz DOCX
+    </a>
+    <a href="{% static 'files/formularz.pdf' %}" class="btn btn-secondary">
+      Pobierz PDF
+    </a>
+  </div>
+  <div class="text-center">
+    <h3>Wypełnij formularz online</h3>
+    <form method="post" action="{% url 'contact_form' %}" class="custom-form">
+      {% csrf_token %}
+      {% for field in form %}
+      <div class="mb-3 row align-items-center">
+        {% if field|is_checkbox %}
+        <label for="{{ field.id_for_label }}" class="col-form-label col-sm-2">{{ field.label }}</label>
+        <div class="col-sm-10 d-flex align-items-center">
+          {{ field|add_class:"form-check-input" }}
+        </div>
+        {% else %}
+        <label for="{{ field.id_for_label }}" class="col-form-label col-sm-2">{{ field.label }}</label>
+        <div class="col-sm-10">
+          {{ field|add_class:"form-control" }}
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-submit">Wyślij</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

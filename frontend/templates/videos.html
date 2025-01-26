@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Galeria filmów{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  {% for video in videos %}
+  <div class="col-md-8 mb-4">
+    <div class="embed-responsive embed-responsive-16by9">
+      {{ video.embed_code|safe }}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

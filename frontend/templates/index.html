@@ -1,0 +1,53 @@
+{% extends "base.html" %} {% block content %}
+{% load static %}
+<div class="container mt-5">
+  <div class="text-center mb-5">
+    <h2>Witamy w Ozdobione</h2>
+    <p class="lead">
+      Profesjonalne dekoracje, które nadadzą każdej imprezie wyjątkowy
+      charakter.
+    </p>
+  </div>
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <img
+        src="{% static 'images/wedding.jpg' %}"
+        class="img-fluid rounded mb-3"
+        alt="Dekoracje weselne"
+      />
+      <h3>Dekoracje weselne</h3>
+      <p>
+        Tworzymy niezapomniane aranżacje na Twój wyjątkowy dzień. Zadbamy o
+        każdy detal, aby Twoje wesele było magiczne.
+      </p>
+    </div>
+    <div class="col-md-4 text-center">
+      <img
+        src="{% static 'images/birthday.jpg' %}"
+        class="img-fluid rounded mb-3"
+        alt="Dekoracje urodzinowe"
+      />
+      <h3>Dekoracje urodzinowe</h3>
+      <p>
+        Organizujemy dekoracje na urodziny, które zachwycą Twoich gości i
+        sprawią, że ten dzień będzie niezapomniany.
+      </p>
+    </div>
+    <div class="col-md-4 text-center">
+      <img
+        src="{% static 'images/christening.jpg' %}"
+        class="img-fluid rounded mb-3"
+        alt="Dekoracje na chrzciny"
+      />
+      <h3>Dekoracje na chrzciny</h3>
+      <p>
+        Specjalizujemy się w dekoracjach na chrzciny, tworząc piękne i
+        eleganckie aranżacje na ten wyjątkowy dzień.
+      </p>
+    </div>
+  </div>
+  <div class="text-center mt-5">
+    <a href="/contact/" class="btn btn-primary btn-lg">Skontaktuj się z nami</a>
+  </div>
+</div>
+{% endblock %}

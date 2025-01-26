@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}
+Galeria zdjęć
+{% endblock %}
+
+{% block content %}
+<h2>Galeria zdjęć</h2>
+<div class="row">
+  {% for photo in photos %}
+  <div class="col-md-4 mb-4">
+    <div class="card">
+      <img
+        src="{{ photo.image.url }}"
+        class="card-img-top"
+        alt="{{ photo.title }}"
+        data-bs-toggle="modal"
+        data-bs-target="#photoModal"
+        data-bs-image-url="{{ photo.image.url }}"
+        data-bs-title="{{ photo.title }}"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ photo.title }}</h5>
+        <p class="card-text">Dodano: {{ photo.created_at|date:"d M Y" }}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="photoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+    <div class="modal-content bg-transparent border-0">
+      <div class="modal-body p-0 d-flex justify-content-center align-items-center">
+        <img id="photoModalImage" src="" class="img-fluid" style="max-height: 90vh;" alt="">
+      </div>
+      <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  var photoModal = document.getElementById('photoModal');
+  photoModal.addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget;
+    var imageUrl = button.getAttribute('data-bs-image-url');
+
+    var modalImage = photoModal.querySelector('#photoModalImage');
+    modalImage.src = imageUrl;
+  });
+</script>
+{% endblock %}
