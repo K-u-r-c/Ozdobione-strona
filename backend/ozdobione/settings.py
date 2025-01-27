@@ -144,7 +144,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '../frontend/media')
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, '../frontend/static')]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, '../frontend/static'),
+    os.path.join(BASE_DIR, 'static')
+]
 
 # Templates
 TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, '../../frontend/templates')]

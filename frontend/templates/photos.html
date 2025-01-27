@@ -5,23 +5,39 @@ Galeria zdjęć
 {% endblock %}
 
 {% block content %}
-<h2>Galeria zdjęć</h2>
+<h2 class="text-center mb-4">Galeria zdjęć</h2>
+
+<!-- Tag Filter Form -->
+<form method="get" class="mb-4" id="tag-filter-form">
+  <div class="tag-filter-container">
+    <div class="tag-filter-scroll">
+      {% for tag in tags %}
+      <div class="tag-filter">
+        <input class="tag-filter-input" type="checkbox" name="tags" value="{{ tag.name }}" id="tag{{ tag.id }}" {% if tag.name in selected_tags %}checked{% endif %}>
+        <label class="tag-filter-label" for="tag{{ tag.id }}">
+          {{ tag.name }}
+        </label>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</form>
+
 <div class="row">
   {% for photo in photos %}
   <div class="col-md-4 mb-4">
-    <div class="card">
-      <img
-        src="{{ photo.image.url }}"
-        class="card-img-top"
-        alt="{{ photo.title }}"
-        data-bs-toggle="modal"
-        data-bs-target="#photoModal"
-        data-bs-image-url="{{ photo.image.url }}"
-        data-bs-title="{{ photo.title }}"
-      />
-      <div class="card-body">
-        <h5 class="card-title">{{ photo.title }}</h5>
-        <p class="card-text">Dodano: {{ photo.created_at|date:"d M Y" }}</p>
+    <div class="custom-link">
+      <div class="hover-effect">
+        <img
+          src="{{ photo.image.url }}"
+          class="img-fluid photo-thumbnail"
+          alt="{{ photo.title }}"
+          data-bs-toggle="modal"
+          data-bs-target="#photoModal"
+          data-bs-image-url="{{ photo.image.url }}"
+          data-bs-title="{{ photo.title }}"
+          data-bs-index="{{ forloop.counter0 }}"
+        />
       </div>
     </div>
   </div>
@@ -32,8 +48,10 @@ Galeria zdjęć
 <div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="photoModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-fullscreen">
     <div class="modal-content bg-transparent border-0">
-      <div class="modal-body p-0 d-flex justify-content-center align-items-center">
+      <div class="modal-body p-0 d-flex justify-content-center align-items-center position-relative">
+        <button id="prevPhoto" class="btn btn-light position-absolute start-0 top-50 translate-middle-y" style="z-index: 1050; background-color: rgba(128, 128, 128, 0.5); border: none; color: rgba(220, 220, 220, 1.0)">&lt;</button>
         <img id="photoModalImage" src="" class="img-fluid" style="max-height: 90vh;" alt="">
+        <button id="nextPhoto" class="btn btn-light position-absolute end-0 top-50 translate-middle-y" style="z-index: 1050; background-color: rgba(128, 128, 128, 0.5); border: none; color: rgba(220, 220, 220, 1.0)">&gt;</button>
       </div>
       <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
@@ -45,12 +63,86 @@ Galeria zdjęć
 {% block extra_js %}
 <script>
   var photoModal = document.getElementById('photoModal');
+  var photos = document.querySelectorAll('.photo-thumbnail');
+  var currentIndex = 0;
+
   photoModal.addEventListener('show.bs.modal', function (event) {
     var button = event.relatedTarget;
     var imageUrl = button.getAttribute('data-bs-image-url');
+    var title = button.getAttribute('data-bs-title');
+    currentIndex = parseInt(button.getAttribute('data-bs-index'));
 
     var modalImage = photoModal.querySelector('#photoModalImage');
     modalImage.src = imageUrl;
+    modalImage.alt = title;
+  });
+
+  function showPhoto(index) {
+    var nextPhoto = photos[index];
+    var modalImage = photoModal.querySelector('#photoModalImage');
+    modalImage.src = nextPhoto.getAttribute('data-bs-image-url');
+    modalImage.alt = nextPhoto.getAttribute('data-bs-title');
+  }
+
+  document.addEventListener('keydown', function(event) {
+    if (photoModal.classList.contains('show')) {
+      if (event.key === 'ArrowRight') {
+        currentIndex = (currentIndex + 1) % photos.length;
+        showPhoto(currentIndex);
+      } else if (event.key === 'ArrowLeft') {
+        currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+        showPhoto(currentIndex);
+      }
+    }
+  });
+
+  document.getElementById('prevPhoto').addEventListener('click', function() {
+    currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+    showPhoto(currentIndex);
+  });
+
+  document.getElementById('nextPhoto').addEventListener('click', function() {
+    currentIndex = (currentIndex + 1) % photos.length;
+    showPhoto(currentIndex);
+  });
+
+  // Close modal when clicking outside the image but not on the nav arrows
+  photoModal.addEventListener('click', function(event) {
+    if (event.target === photoModal || event.target.classList.contains('modal-body')) {
+      var prevPhotoButton = document.getElementById('prevPhoto');
+      var nextPhotoButton = document.getElementById('nextPhoto');
+      if (event.target !== prevPhotoButton && event.target !== nextPhotoButton) {
+        var modal = bootstrap.Modal.getInstance(photoModal);
+        modal.hide();
+      }
+    }
+  });
+
+  // Auto-submit form on checkbox change
+  document.querySelectorAll('.tag-filter-input').forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      document.getElementById('tag-filter-form').submit();
+    });
+  });
+
+    // Funkcja do zmiany klasy paska nawigacyjnego podczas przewijania
+  function adjustNavbarHeight() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.remove('navbar-large');
+      navbar.classList.add('navbar-small');
+    } else {
+      navbar.classList.remove('navbar-small');
+      navbar.classList.add('navbar-large');
+    }
+  }
+
+  // Dodaj nasłuchiwanie na zdarzenie przewijania
+  window.addEventListener('scroll', adjustNavbarHeight);
+
+  // Ustawienie początkowej klasy paska nawigacyjnego
+  document.addEventListener('DOMContentLoaded', function() {
+    adjustNavbarHeight();
   });
 </script>
 {% endblock %}

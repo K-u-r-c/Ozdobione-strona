@@ -16,3 +16,6 @@ class DynamicContactForm(forms.Form):
                 self.fields[field.label] = forms.CharField(widget=forms.Textarea, label=field.label, required=field.required)
             elif field.field_type == 'checkbox':
                 self.fields[field.label] = forms.BooleanField(label=field.label, required=field.required)
+            elif field.field_type == 'multiselect':
+                choices = [(option.id, option.option_text) for option in field.options.all()]
+                self.fields[field.label] = forms.MultipleChoiceField(choices=choices, widget=forms.CheckboxSelectMultiple, label=field.label, required=field.required)

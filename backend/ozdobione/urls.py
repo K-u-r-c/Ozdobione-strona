@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +28,7 @@ urlpatterns = [
     path('form/', include('apps.form.urls')),
     path('gallery/', include('apps.gallery.urls')),
     path('contact/', TemplateView.as_view(template_name="contact.html"), name="contact"),
+    path('faq/', views.faq, name='faq'),
 ]
 
 if settings.DEBUG:

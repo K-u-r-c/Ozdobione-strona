@@ -1,5 +1,4 @@
-{% extends "base.html" %} {% block content %}
-{% load static %}
+{% extends "base.html" %} {% block content %} {% load static %}
 <div class="container mt-5">
   <div class="text-center mb-5">
     <h2>Witamy w Ozdobione</h2>
@@ -10,36 +9,48 @@
   </div>
   <div class="row">
     <div class="col-md-4 text-center">
-      <img
-        src="{% static 'images/wedding.jpg' %}"
-        class="img-fluid rounded mb-3"
-        alt="Dekoracje weselne"
-      />
-      <h3>Dekoracje weselne</h3>
+      <a href="/gallery/photos/?tags=Wesele" class="custom-link">
+        <div class="hover-effect">
+          <img
+            src="{% static 'images/wedding.jpg' %}"
+            class="img-fluid mb-3"
+            alt="Dekoracje weselne"
+          />
+          <h3>Dekoracje weselne</h3>
+        </div>
+      </a>
       <p>
         Tworzymy niezapomniane aranżacje na Twój wyjątkowy dzień. Zadbamy o
         każdy detal, aby Twoje wesele było magiczne.
       </p>
     </div>
     <div class="col-md-4 text-center">
-      <img
-        src="{% static 'images/birthday.jpg' %}"
-        class="img-fluid rounded mb-3"
-        alt="Dekoracje urodzinowe"
-      />
-      <h3>Dekoracje urodzinowe</h3>
+      <a href="/gallery/photos/?tags=Urodziny" class="custom-link">
+        <div class="hover-effect">
+          <img
+            src="{% static 'images/birthday.jpg' %}"
+            class="img-fluid mb-3"
+            alt="Dekoracje urodzinowe"
+          />
+          <h3>Dekoracje urodzinowe</h3>
+        </div>
+      </a>
       <p>
         Organizujemy dekoracje na urodziny, które zachwycą Twoich gości i
         sprawią, że ten dzień będzie niezapomniany.
       </p>
     </div>
     <div class="col-md-4 text-center">
-      <img
-        src="{% static 'images/christening.jpg' %}"
-        class="img-fluid rounded mb-3"
-        alt="Dekoracje na chrzciny"
-      />
-      <h3>Dekoracje na chrzciny</h3>
+      <a href="/gallery/photos/?tags=Chrzciny" class="custom-link">
+        <div class="hover-effect">
+          <img
+            src="{% static 'images/christening.jpg' %}"
+            class="img-fluid mb-3"
+            alt="Dekoracje na chrzciny"
+          />
+          <h3>Dekoracje na chrzciny</h3>
+        </div>
+      </a>
       <p>
         Specjalizujemy się w dekoracjach na chrzciny, tworząc piękne i
         eleganckie aranżacje na ten wyjątkowy dzień.
@@ -47,7 +58,7 @@
     </div>
   </div>
   <div class="text-center mt-5">
-    <a href="/contact/" class="btn btn-primary btn-lg">Skontaktuj się z nami</a>
+    <a href="/contact/" class="btn btn-primary btn-lg btn-contact-us">Skontaktuj się z nami</a>
   </div>
 </div>
 {% endblock %}
