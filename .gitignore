@@ -9,3 +9,6 @@ __pycache__/
 
 # Environment variables
 backend/.env
+
+# media files
+frontend/media/
