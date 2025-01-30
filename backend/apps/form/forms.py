@@ -1,10 +1,10 @@
 from django import forms
-from .models import FormField
+from .models import FormField, FormType
 
 class DynamicContactForm(forms.Form):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, form_type, *args, **kwargs):
         super(DynamicContactForm, self).__init__(*args, **kwargs)
-        fields = FormField.objects.all()
+        fields = FormField.objects.filter(form_types=form_type)
         for field in fields:
             if field.field_type == 'char':
                 self.fields[field.label] = forms.CharField(label=field.label, required=field.required)

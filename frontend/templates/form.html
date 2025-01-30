@@ -6,7 +6,7 @@
       Możesz wypełnić formularz na stronie i wysłać go bezpośrednio przez nią,
       lub pobrać formularz w wersji DOCX do wypełnienia na komputerze lub PDF do
       druku i skanu, a następnie wysłać go na nasz adres mailowy:
-      ozdobionedlaciebie@gmail.com.
+      <strong>ozdobionedlaciebie@gmail.com</strong>.
     </p>
     <a href="{% static 'files/formularz.docx' %}" class="btn btn-primary me-2">
       Pobierz DOCX
@@ -17,8 +17,22 @@
   </div>
   <div class="text-center">
     <h3>Wypełnij formularz online</h3>
+    <form method="get" action="{% url 'contact_form' %}" class="mb-4">
+      <div class="mb-3">
+        <label for="form_type" class="form-label">Wybierz typ formularza:</label>
+        <select id="form_type" name="form_type" class="form-select" onchange="this.form.submit()">
+          <option value="">-- Wybierz --</option>
+          {% for form_type in form_types %}
+          <option value="{{ form_type.id }}" {% if selected_form_type and selected_form_type.id == form_type.id %}selected{% endif %}>{{ form_type.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </form>
+    {% if form %}
     <form method="post" action="{% url 'contact_form' %}" class="custom-form">
-      {% csrf_token %} {% for field in form %}
+      {% csrf_token %}
+      <input type="hidden" name="form_type" value="{{ selected_form_type.id }}">
+      {% for field in form %}
       <div class="mb-3 row align-items-center">
         {% if field|is_checkbox %}
         <label for="{{ field.id_for_label }}" class="col-form-label col-sm-2">{{ field.label }}</label>
@@ -47,6 +61,7 @@
       {% endfor %}
       <button type="submit" class="btn btn-submit">Wyślij</button>
     </form>
+    {% endif %}
   </div>
 </div>
 {% endblock %}

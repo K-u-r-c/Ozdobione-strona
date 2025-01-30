@@ -1,3 +1,4 @@
+
 {% extends "base.html" %} {% block content %} {% load static %}
 <div class="container mt-5">
   <div class="text-center mb-5">
@@ -6,18 +7,22 @@
       Profesjonalne dekoracje, które nadadzą każdej imprezie wyjątkowy
       charakter.
     </p>
+    <a href="/form/" class="btn btn-primary btn-lg btn-contact-us mt-3"
+      >Skontaktuj się z nami</a
+    >
   </div>
   <div class="row">
     <div class="col-md-4 text-center">
       <a href="/gallery/photos/?tags=Wesele" class="custom-link">
         <div class="hover-effect">
           <img
-            src="{% static 'images/wedding.jpg' %}"
+            {% comment %} src="{% static 'images/wedding.jpg' %}" {% endcomment %}
+            src="https://placehold.co/600x1200"
             class="img-fluid mb-3"
             alt="Dekoracje weselne"
           />
-          <h3>Dekoracje weselne</h3>
         </div>
+        <h3>Dekoracje weselne</h3>
       </a>
       <p>
         Tworzymy niezapomniane aranżacje na Twój wyjątkowy dzień. Zadbamy o
@@ -28,12 +33,13 @@
       <a href="/gallery/photos/?tags=Urodziny" class="custom-link">
         <div class="hover-effect">
           <img
-            src="{% static 'images/birthday.jpg' %}"
+            {% comment %} src="{% static 'images/birthday.jpg' %}" {% endcomment %}
+            src="https://placehold.co/600x1200"
             class="img-fluid mb-3"
             alt="Dekoracje urodzinowe"
           />
-          <h3>Dekoracje urodzinowe</h3>
         </div>
+        <h3>Dekoracje urodzinowe</h3>
       </a>
       <p>
         Organizujemy dekoracje na urodziny, które zachwycą Twoich gości i
@@ -44,12 +50,13 @@
       <a href="/gallery/photos/?tags=Chrzciny" class="custom-link">
         <div class="hover-effect">
           <img
-            src="{% static 'images/christening.jpg' %}"
+            {% comment %} src="{% static 'images/christening.jpg' %}" {% endcomment %}
+            src="https://placehold.co/600x1200"
             class="img-fluid mb-3"
             alt="Dekoracje na chrzciny"
           />
-          <h3>Dekoracje na chrzciny</h3>
         </div>
+        <h3>Dekoracje na chrzciny</h3>
       </a>
       <p>
         Specjalizujemy się w dekoracjach na chrzciny, tworząc piękne i
@@ -57,8 +64,40 @@
       </p>
     </div>
   </div>
-  <div class="text-center mt-5">
-    <a href="/contact/" class="btn btn-primary btn-lg btn-contact-us">Skontaktuj się z nami</a>
+
+  <div class="container mt-5 how-it-works">
+    <div class="text-center mb-5">
+      <h2>Jak to działa?</h2>
+      <p class="lead">
+        Poznaj kroki, które podejmujemy, aby Twoje wydarzenie było wyjątkowe.
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Konsultacja</h3>
+          <p>Rozmawiamy z Tobą, aby zrozumieć Twoje potrzeby i oczekiwania.</p>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Planowanie</h3>
+          <p>Tworzymy plan dekoracji, który spełnia Twoje wymagania.</p>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Realizacja</h3>
+          <p>
+            Realizujemy plan, dbając o każdy detal, aby Twoje wydarzenie było
+            niezapomniane.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

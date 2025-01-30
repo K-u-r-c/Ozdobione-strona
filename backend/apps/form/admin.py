@@ -1,6 +1,11 @@
 from django.contrib import admin
 from adminsortable2.admin import SortableAdminMixin
-from .models import FormField, FormFieldOption
+from .models import FormField, FormFieldOption, FormType
+
+@admin.register(FormType)
+class FormTypeAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
 
 class FormFieldOptionInline(admin.TabularInline):
     model = FormFieldOption
@@ -11,9 +16,10 @@ class FormFieldAdmin(SortableAdminMixin, admin.ModelAdmin):
     list_display = ('label', 'field_type', 'required', 'order')
     list_filter = ('field_type', 'required')
     search_fields = ('label',)
+    filter_horizontal = ('form_types',)
     fieldsets = (
         (None, {
-            'fields': ('label', 'field_type', 'required', 'order')
+            'fields': ('label', 'field_type', 'required', 'order', 'form_types')
         }),
     )
     verbose_name = "Pole formularza"

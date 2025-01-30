@@ -17,7 +17,8 @@
   <body>
     <div class="d-flex flex-column min-vh-100">
       <!-- Social Media Ribbon -->
-      {% comment %} <div
+      {% comment %}
+      <div
         class="bg-secondary text-white py-2 d-flex justify-content-center align-items-center"
       >
         <p class="mb-0 me-3" style="font-size: 1.25rem">Odwiedź nas na</p>
@@ -35,7 +36,8 @@
             width="40"
           />
         </a>
-      </div> {% endcomment %}
+      </div>
+      {% endcomment %}
 
       <!-- Navigation Menu -->
       <nav
@@ -157,21 +159,21 @@
     <script>
       // Funkcja do zmiany klasy paska nawigacyjnego podczas przewijania
       function adjustNavbarHeight() {
-        const navbar = document.querySelector('.navbar');
+        const navbar = document.querySelector(".navbar");
         if (window.scrollY > 50) {
-          navbar.classList.remove('navbar-large');
-          navbar.classList.add('navbar-small');
+          navbar.classList.remove("navbar-large");
+          navbar.classList.add("navbar-small");
         } else {
-          navbar.classList.remove('navbar-small');
-          navbar.classList.add('navbar-large');
+          navbar.classList.remove("navbar-small");
+          navbar.classList.add("navbar-large");
         }
       }
 
       // Dodaj nasłuchiwanie na zdarzenie przewijania
-      window.addEventListener('scroll', adjustNavbarHeight);
+      window.addEventListener("scroll", adjustNavbarHeight);
 
       // Ustawienie początkowej klasy paska nawigacyjnego
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener("DOMContentLoaded", function () {
         adjustNavbarHeight();
       });
     </script>
