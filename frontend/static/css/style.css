@@ -15,6 +15,7 @@
     --accent-color-hover-border: #887475;
 
     --background-color: #ffffff;
+    --secondary-background-color: #ebebeb;
 
     --text-color: #333333;
 }
@@ -23,6 +24,14 @@ body {
     font-family: Arial, sans-serif;
     height: 100%;
     background-color: var(--background-color);
+}
+
+.navbar {
+    background-color: var(--secondary-background-color) !important;
+}
+
+.footer {
+    background-color: var(--secondary-background-color) !important;
 }
 
 .flex-grow-1 {
@@ -54,7 +63,7 @@ body {
 
 /* FAQ custom style */
 .faq-page {
-    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    background: var(--secondary-background-color);
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -120,7 +129,7 @@ body {
     display: inline-block;
     padding: 10px 20px;
     border-radius: 20px;
-    background-color: #f0f0f0;
+    background-color: var(--secondary-background-color);
     color: #333;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -175,7 +184,7 @@ body {
 
 /* Custom styles for the "How It Works" section */
 .how-it-works {
-    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    background: var(--secondary-background-color);
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -270,7 +279,7 @@ body {
 }
 
 .contact-page {
-    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    background: var(--secondary-background-color);
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -315,7 +324,7 @@ body {
 
 /* Custom styles for the about page */
 .about-page {
-    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    background: var(--secondary-background-color);
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -355,7 +364,7 @@ body {
 
 /* Custom styles for the form page */
 .form-page {
-    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    background: var(--secondary-background-color);
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
