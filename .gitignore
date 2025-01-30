@@ -12,3 +12,6 @@ backend/.env
 
 # media files
 frontend/media/
+
+# Mac OS
+.DS_Store

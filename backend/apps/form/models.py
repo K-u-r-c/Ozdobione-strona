@@ -2,6 +2,7 @@ from django.db import models
 
 class FormType(models.Model):
     name = models.CharField(max_length=100, verbose_name="Nazwa formularza")
+    order = models.PositiveIntegerField(default=0, verbose_name="Kolejność")
 
     def __str__(self):
         return self.name
@@ -9,6 +10,7 @@ class FormType(models.Model):
     class Meta:
         verbose_name = "Typ formularza"
         verbose_name_plural = "Typy formularzy"
+        ordering = ['order']
 
 class FormField(models.Model):
     FIELD_TYPES = [

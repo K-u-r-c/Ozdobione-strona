@@ -491,6 +491,19 @@ body {
     transition: height 0.2s ease;
 }
 
+.navbar-logo {
+    position: relative;
+    transition: width 0.2s ease, top 0.2s ease;
+}
+
+.navbar-large .navbar-logo {
+    width: 350px;
+}
+
+.navbar-small .navbar-logo {
+    width: 200px;
+}
+
 /* Responsive styles for mobile devices */
 @media (max-width: 768px) {
     .form-page {
@@ -549,5 +562,13 @@ body {
 
     .navbar-small {
         height: auto;
+    }
+
+    .navbar-large .navbar-logo {
+        width: 200px;
+    }
+
+    .navbar-small .navbar-logo {
+        width: 200px;
     }
 }

@@ -3,9 +3,10 @@ from adminsortable2.admin import SortableAdminMixin
 from .models import FormField, FormFieldOption, FormType
 
 @admin.register(FormType)
-class FormTypeAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+class FormTypeAdmin(SortableAdminMixin, admin.ModelAdmin):
+    list_display = ('name', 'order')
     search_fields = ('name',)
+    ordering = ('order',)
 
 class FormFieldOptionInline(admin.TabularInline):
     model = FormFieldOption

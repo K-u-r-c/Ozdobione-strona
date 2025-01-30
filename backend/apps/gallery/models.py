@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.utils.html import mark_safe
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True, verbose_name="Nazwa tagu")
@@ -32,6 +33,10 @@ class Photo(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def image_tag(self):
+        return mark_safe(f'<img src="{self.image.url}" width="150" height="150" />')
+    image_tag.short_description = 'Image'
 
     class Meta:
         verbose_name = "Zdjęcie"
