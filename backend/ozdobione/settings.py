@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 from decouple import config
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -60,7 +61,7 @@ ROOT_URLCONF = 'ozdobione.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '../../frontend/templates')],
+        'DIRS': [os.path.join(BASE_DIR, '../frontend/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -104,6 +105,8 @@ DATABASES = {
         'PORT': config('DB_PORT', default=5432, cast=int),
     }
 }
+database_url = config('DATABASE_URL')
+DATABASES["default"] = dj_database_url.parse(database_url)
 
 
 # Password validation
