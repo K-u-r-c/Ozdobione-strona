@@ -146,13 +146,15 @@ USE_TZ = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '../frontend/media')
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, '../frontend/static'),
     os.path.join(BASE_DIR, 'static')
 ]
+
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Templates
 TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, '../frontend/templates')]
