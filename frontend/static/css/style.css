@@ -182,6 +182,14 @@ body {
     display: none;
 }
 
+/* Welcome styles */
+.welcome {
+    background: var(--secondary-background-color);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* Custom styles for the "How It Works" section */
 .how-it-works {
     background: var(--secondary-background-color);
@@ -506,11 +514,11 @@ body {
 }
 
 .navbar-large .navbar-logo {
-    width: 350px;
+    width: 300px;
 }
 
 .navbar-small .navbar-logo {
-    width: 200px;
+    width: 150px;
 }
 
 /* Responsive styles for mobile devices */
